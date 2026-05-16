@@ -12,8 +12,6 @@ const { title } = Astro.props;
   <Metadata title={title} />
 </head>
 <body>
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
   <Starfield />
   
   <nav class="site-nav">
@@ -27,20 +25,6 @@ const { title } = Astro.props;
   </nav>
   
   <slot /> 
-
-  <script>
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    
-    document.addEventListener('mousemove', (e) => {
-      if(cursor && ring) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        ring.style.left = e.clientX + 'px';
-        ring.style.top = e.clientY + 'px';
-      }
-    });
-  </script>
 </body>
 </html>
 
@@ -71,7 +55,7 @@ const { title } = Astro.props;
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
+    cursor: auto;
   }
 
   /* Premium Analogue Fine-Grain Overlay */
@@ -102,8 +86,6 @@ const { title } = Astro.props;
     text-transform: uppercase;
     color: var(--muted);
     margin-bottom: 24px;
-    
-    /* Center layout default, clean block flow */
     display: block;
     width: 100%;
     text-align: center;
@@ -154,11 +136,7 @@ const { title } = Astro.props;
     color: var(--gold);
   }
 
-  /* 6. Functional Hardware-Accelerated Interactive Cursors */
-  .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s; mix-blend-mode: screen; }
-  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(184,152,42,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
-
-  /* 7. Unified Core Breakpoints */
+  /* 6. Unified Core Breakpoints */
   @media (max-width: 768px) {
     .section-container { padding: 0 24px; }
     .nav-container { padding: 20px 24px; }

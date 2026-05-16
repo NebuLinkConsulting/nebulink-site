@@ -1,0 +1,330 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const briefings = await getCollection('insights');
+  return briefings.map((brief: CollectionEntry<'insights'>) => ({
+    params: { id: brief.id },
+    props: { brief },
+  }));
+}
+
+const { brief } = Astro.props;
+const { Content } = await render(brief);
+
+const formatDate = (dateStr: string) => {
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+};
+---
+
+<MainLayout title={`${brief.data.title} | NebuLink`}>
+  <main class="article-container" data-pagefind-body>
+    <div class="article-inner-frame">
+
+      <div class="article-header">
+        <div class="article-meta">
+          {brief.data.tag && <span class="meta-tag">{brief.data.tag}</span>}
+          <span class="meta-date">{formatDate(brief.data.date)}</span>
+        </div>
+        <h1 class="article-title">{brief.data.title}</h1>
+        {brief.data.excerpt && <p class="article-excerpt">{brief.data.excerpt}</p>}
+        <a href="/insights" class="back-link">← Back to Archive</a>
+      </div>
+
+      <div class="article-body">
+        <Content />
+      </div>
+
+    </div>
+  </main>
+</MainLayout>
+
+<style>
+  /* ==========================================
+     GLOBAL COMPONENT CONTAINERS
+     ========================================== */
+
+  .article-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 160px 0 120px 0;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  /* The immutable frame boundary forcing text & graphics to align perfectly */
+  .article-inner-frame {
+    width: 100%;
+    max-width: 720px; 
+    padding: 0 24px;   
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+  }
+
+  .article-header {
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 48px;
+    margin-bottom: 56px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .meta-tag { color: var(--gold); }
+  .meta-date { color: var(--muted); }
+
+  .article-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .article-excerpt {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .back-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.7; }
+
+  /* ==========================================
+     MARKDOWN CONTENT TYPE HANDLING via :global()
+     ========================================== */
+
+  .article-body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #cbd5e1;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .article-body :global(p) { 
+    margin-bottom: 28px; 
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Editorial Dropcap targeting genuine text blocks */
+  .article-body :global(> p:first-of-type:not(:has(img)):not(:has(iframe))::first-letter) {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.85;
+    margin-right: 12px;
+    margin-top: 4px;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .article-body :global(h1),
+  .article-body :global(h2),
+  .article-body :global(h3) {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--text);
+    font-weight: 300;
+    margin: 56px 0 20px;
+    line-height: 1.3;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .article-body :global(h1) { font-size: 2.2rem; }
+  .article-body :global(h2) { 
+    font-size: 1.8rem; 
+    border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+    padding-bottom: 10px;
+  }
+  .article-body :global(h3) { font-size: 1.4rem; color: var(--gold); }
+  .article-body :global(strong) { color: var(--text); font-weight: 600; }
+
+  /* Lists Isolation (Halts dropcap bleed) */
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin: 0 0 32px 24px;
+    list-style-type: square;
+  }
+  
+  .article-body :global(li) { 
+    margin-bottom: 12px; 
+    line-height: 1.7;
+  }
+
+  .article-body :global(li::first-letter) {
+    font-size: inherit !important;
+    float: none !important;
+    color: inherit !important;
+    margin: 0 !important;
+  }
+
+  /* Blockquotes */
+  .article-body :global(blockquote) {
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+    margin: 40px 0;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .article-body :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border2);
+    margin: 56px 0;
+    width: 100%;
+  }
+
+  /* ==========================================
+     LINK HANDLING & SUBSTACK SYSTEM UTILITIES
+     ========================================== */
+
+  .article-body :global(a) {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.3);
+    transition: all 0.2s ease;
+    word-break: break-all;
+  }
+  .article-body :global(a:hover) { 
+    color: var(--text);
+    border-color: var(--gold); 
+  }
+
+  /* Extinguishes loose url strings output underneath media boxes */
+  .article-body :global(p > a[href^="http"]:only-child),
+  .article-body :global(p + a[href^="http"]) {
+    display: none !important;
+  }
+
+  /* ==========================================
+     IMAGE LOCKDOWN (ZERO ALIGNMENT BLEED)
+     ========================================== */
+
+  /* Neutralize markdown standard paragraph block wraps containing images */
+  .article-body :global(p:has(img)) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 40px 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Forces images to render bound identically to text column limits */
+  .article-body :global(img) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important; 
+    height: auto !important;
+    box-sizing: border-box !important; 
+    border: 1px solid rgba(197, 168, 128, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    margin: 0 auto !important;
+  }
+
+  /* Strip anchor decoration if the output markdown compiled as a linked asset */
+  .article-body :global(a:has(img)) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-bottom: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .article-body :global(a:has(img) img) {
+    margin: 0 auto !important; 
+  }
+
+  /* ==========================================
+     MARKDOWN DATA TABLES OVERHAUL
+     ========================================== */
+  
+  .article-body :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 48px 0;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    border: 1px solid rgba(197, 168, 128, 0.15);
+    background-color: rgba(10, 54, 44, 0.2);
+    box-sizing: border-box;
+  }
+
+  .article-body :global(th) {
+    font-family: 'Barlow Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.8rem;
+    color: var(--gold);
+    background-color: #0A362C;
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .article-body :global(td) {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(197, 168, 128, 0.08);
+    vertical-align: top;
+  }
+
+  .article-body :global(tr:nth-child(even)) {
+    background-color: rgba(10, 54, 44, 0.4);
+  }
+
+  .article-body :global(td:last-child) {
+    font-family: monospace;
+    color: var(--gold);
+    text-align: right;
+  }
+
+  /* ==========================================
+     RESPONSIVE VIEWPANEL QUERIES
+     ========================================== */
+
+  @media (max-width: 768px) {
+    .article-container {
+      padding: 120px 0 80px 0;
+    }
+    
+    .article-body :global(table) {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+</style>

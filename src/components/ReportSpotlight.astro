@@ -58,7 +58,6 @@
     border-bottom: 1px solid var(--border2); 
   }  
   
-  /* Tracks layout below the global top-level eyebrow utility */
   .spotlight-container { 
     display: grid; 
     grid-template-columns: 1fr 1.2fr; 
@@ -72,7 +71,6 @@
     justify-content: center; 
   }
   
-  /* Hardcase Print Journal Layout Simulation */
   .report-card-mockup { 
     width: 100%; 
     max-width: 380px; 
@@ -136,7 +134,6 @@
     color: var(--gold3); 
   }
   
-  /* Primary Content Branding */
   .section-title { 
     font-family: 'Cormorant Garamond', serif; 
     font-size: clamp(2rem, 3.5vw, 3.2rem); 
@@ -152,7 +149,6 @@
     margin-bottom: 36px; 
   }
   
-  /* Data Track Features Grid split layout */
   .key-pillars { 
     display: flex; 
     gap: 32px; 
@@ -176,7 +172,6 @@
     color: var(--muted); 
   }
   
-  /* Conversion Intake Elements Block */
   .access-box { 
     background: var(--surface); 
     border: 1px solid var(--border2); 
@@ -185,4 +180,80 @@
   .access-box h4 { 
     font-family: 'Barlow Condensed', sans-serif; 
     font-size: 0.75rem; 
-    letter-spacing: 0.15
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .access-form { 
+    display: flex; 
+    gap: 12px; 
+  }
+  .access-form input { 
+    flex: 1; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid var(--border2); 
+    padding: 10px 0; 
+    color: var(--text); 
+    font-family: 'Barlow', sans-serif; 
+    font-size: 0.85rem; 
+    outline: none; 
+    transition: border-color 0.3s; 
+  }
+  .access-form input:focus { border-color: var(--gold3); }
+  .access-form input::placeholder { color: var(--muted); font-weight: 300; }
+  .access-form button { 
+    background: transparent; 
+    border: 1px solid var(--gold3); 
+    color: var(--gold); 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    letter-spacing: 0.15em; 
+    text-transform: uppercase; 
+    padding: 10px 24px; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    white-space: nowrap;
+  }
+  .access-form button:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+
+  @media (max-width: 968px) {
+    .spotlight-section {
+      padding: 100px 0;
+    }
+    .spotlight-container {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+.report-preview-side {
+  order: 1;
+}
+.report-details-side {
+  order: 2;
+}
+    .report-card-mockup {
+      max-width: 100%;
+    }
+    .access-form {
+      flex-direction: column;
+    }
+    .access-form button {
+      align-self: flex-start;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .spotlight-section {
+      padding: 80px 0;
+    }
+    .report-mock-title {
+      font-size: 1.6rem;
+    }
+    .key-pillars {
+      flex-direction: column;
+      gap: 24px;
+    }
+  }
+</style>

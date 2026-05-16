@@ -2,6 +2,7 @@
 // NebuLink Outro & Intake Portal Component
 const currentYear = new Date().getFullYear();
 ---
+
 <section class="outro-section" id="contact">
   <div class="section-container">
     
@@ -12,7 +13,7 @@ const currentYear = new Date().getFullYear();
       <div class="outro-header-panel">
         <h2 class="outro-title">Get in Touch</h2>
         <p class="outro-subtitle">
-          Whether you are looking for specific market intelligence, have questions about our analysis, or want to discuss a custom project, send over a message. 
+          Whether you're looking for specific market intelligence, have questions about our analysis, or want to discuss a custom project, send over a message. 
         </p>
       </div>
 
@@ -25,7 +26,6 @@ const currentYear = new Date().getFullYear();
           <div class="form-row full-width">
             <textarea id="form-msg" placeholder="How can we help you? Describe your inquiry or project requirements..." rows="3" required></textarea>
           </div>
-          
           <button type="submit" class="submit-btn">Send Message ↗</button>
         </form>
       </div>
@@ -47,26 +47,27 @@ const currentYear = new Date().getFullYear();
 
 <script>
   const form = document.getElementById('nebulink-intake-form');
-  
-  form?.addEventListener('submit', (event) => {
+
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    // Grab the inputs cleanly
-    const emailVal = (document.getElementById('form-email') as HTMLInputElement).value;
-    const orgVal = (document.getElementById('form-org') as HTMLInputElement).value;
-    const msgVal = (document.getElementById('form-msg') as HTMLTextAreaElement).value;
+    const btn = form.querySelector('.submit-btn') as HTMLButtonElement;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
 
-    const targetEmail = 'info@nebulink.co.uk';
-    const subject = `NebuLink Project/Inquiry - ${orgVal}`;
-    
-    // Construct a professional, readable email body layout
-    const emailBody = `Hi Alistair,\n\n${msgVal}\n\n---\nSender Email: ${emailVal}\nOrganisation: ${orgVal}`;
+    const formData = new FormData();
+    formData.append('email', (document.getElementById('form-email') as HTMLInputElement).value);
+    formData.append('org', (document.getElementById('form-org') as HTMLInputElement).value);
+    formData.append('message', (document.getElementById('form-msg') as HTMLTextAreaElement).value);
 
-    // Generate the fully encoded mailto URL
-    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    const res = await fetch('/api/contact', { method: 'POST', body: formData });
 
-    // Trigger the native local device app
-    window.location.href = mailtoUrl;
+    if (res.ok) {
+      btn.textContent = 'Message Sent ✓';
+    } else {
+      btn.textContent = 'Failed — try again';
+      btn.disabled = false;
+    }
   });
 </script>
 
@@ -123,11 +124,9 @@ const currentYear = new Date().getFullYear();
 
   .intake-form { display: flex; flex-direction: column; gap: 32px; }
   
-  /* Input layouts */
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
   .form-row.full-width { grid-template-columns: 1fr; }
   
-  /* Minimalist structural styling */
   .intake-form input, .intake-form textarea { 
     background: transparent; 
     border: none;
@@ -141,9 +140,7 @@ const currentYear = new Date().getFullYear();
     border-radius: 0;
   }
   
-  .intake-form textarea {
-    resize: none;
-  }
+  .intake-form textarea { resize: none; }
 
   .intake-form input:focus, .intake-form textarea:focus { 
     outline: none; 

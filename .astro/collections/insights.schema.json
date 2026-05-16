@@ -14,14 +14,15 @@
     "excerpt": {
       "type": "string"
     },
+    "description": {
+      "type": "string"
+    },
     "$schema": {
       "type": "string"
     }
   },
   "required": [
     "title",
-    "date",
-    "tag",
-    "excerpt"
+    "date"
   ]
 }
