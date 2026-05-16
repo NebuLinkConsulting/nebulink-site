@@ -1,0 +1,58 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+// 1. Fetch all your Markdown articles
+const allBriefings = await getCollection('insights');
+
+// 2. Sort them chronologically (newest first)
+const sortedBriefings = allBriefings.sort((a: CollectionEntry<'insights'>, b: CollectionEntry<'insights'>) => {
+  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+});
+---
+
+<MainLayout title="NebuLink Archives | Strategic Intelligence">
+  <main class="archive-container">
+    
+    <header class="archive-header">
+      <h1 class="archive-title">The Insights Archive</h1>
+      <p class="archive-lead">A complete chronological directory of technical dispatches and market analysis.</p>
+    </header>
+
+    <div class="archive-list">
+      {sortedBriefings.map((brief: CollectionEntry<'insights'>) => (
+        <article class="archive-row">
+          <div class="row-meta">
+            <span class="row-date">{brief.data.date}</span>
+            <span class="row-tag">{brief.data.tag}</span>
+          </div>
+          
+          <div class="row-content">
+            <h2 class="row-title">
+              {/* brief.id perfectly handles clean URL slugs out-of-the-box in Astro v6 */}
+              <a href={`/insights/${brief.id}`}>{brief.data.title}</a>
+            </h2>
+            <p class="row-excerpt">{brief.data.excerpt}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </main>
+</MainLayout>
+
+<style>
+  .archive-container { max-width: 1000px; margin: 0 auto; padding: 160px 24px; }
+  .archive-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 32px; margin-bottom: 48px; }
+  .archive-title { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: #fff; margin-bottom: 12px; }
+  .archive-lead { color: #888; font-size: 1rem; }
+  .archive-row { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .row-meta { display: flex; flex-direction: column; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; text-transform: uppercase; }
+  .row-date { color: #666; }
+  .row-tag { color: #b8982a; }
+  .row-title a { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; color: #fff; text-decoration: none; transition: color 0.2s ease; }
+  .row-title a:hover { color: #b8982a; }
+  .row-excerpt { color: #cbd5e1; font-size: 0.9rem; margin-top: 8px; line-height: 1.6; }
+  @media (max-width: 768px) { .archive-row { grid-template-columns: 1fr; gap: 12px; } }
+</style>

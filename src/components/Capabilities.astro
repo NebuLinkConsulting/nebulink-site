@@ -1,0 +1,81 @@
+---
+// NebuLink Consulting Services Component
+---
+<section class="capabilities-section" id="consultancy">
+  <div class="container">
+    
+    <div class="section-header">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span>Consulting & Advisory Pillars</span>
+      </div>
+      <h2 class="section-title">End-to-end technical & <span>market expertise</span></h2>
+      <p class="section-subtitle">
+        Bridging the gap between complex space-segment infrastructure and downstream commercial strategy. We don't provide generic overviews; we deliver technically verified, data-driven execution.
+      </p>
+    </div>
+
+    <div class="capabilities-grid">
+      
+      <div class="cap-card">
+        <div class="cap-num">01</div>
+        <h3>Market Intelligence & Ecosystem Mapping</h3>
+        <p>Proprietary data models and structural mapping of space-segment architectures, supply chains, and emerging relay infrastructure. We turn fragmented industrial tracking into clean, strategic clarity.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-num">02</div>
+        <h3>Downstream Applications Engineering</h3>
+        <p>Bespoke technical advisory for integrating Earth Observation (EO), GNSS, and satellite telecommunications data into commercial enterprise workflows and institutional frameworks.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-num">03</div>
+        <h3>Technical Due Diligence & Strategy</h3>
+        <p>Grounded technical assessments of orbital constraints, spectrum allocations, optical inter-satellite link (OISL) configurations, and infrastructure viability for investors and operators.</p>
+      </div>
+
+      <div class="cap-card">
+        <div class="cap-num">04</div>
+        <h3>Industrial Architecture & Procurement</h3>
+        <p>Guiding public and private stakeholders through the programmatic realities of the global space economy—aligning technical design requirements with institutional funding lines.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .capabilities-section { 
+    position: relative; 
+    z-index: 2; 
+    padding: 100px 60px; 
+    background: var(--bg2); 
+    border-bottom: 1px solid var(--border2); 
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .section-header { max-width: 650px; margin-bottom: 70px; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
+  .eyebrow span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 20px; }
+  .section-title span { font-style: italic; color: var(--gold); font-weight: 400; }
+  .section-subtitle { font-size: 0.9rem; line-height: 1.8; color: var(--muted); }
+
+  .capabilities-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  
+  .cap-card { background: var(--surface); border: 1px solid var(--border2); padding: 48px; position: relative; transition: border-color 0.3s, transform 0.3s; }
+  .cap-card:hover { border-color: rgba(184,152,42,0.3); transform: translateY(-2px); }
+  .cap-card::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(184,152,42,0.05); margin: 6px; pointer-events: none; }
+  
+  .cap-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 24px; display: inline-block; border-bottom: 1px solid var(--gold3); padding-bottom: 4px; }
+  .cap-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--text); margin-bottom: 16px; line-height: 1.2; }
+  .cap-card p { font-size: 0.85rem; line-height: 1.75; color: var(--muted); }
+
+  @media (max-width: 850px) {
+    .capabilities-grid { grid-template-columns: 1fr; gap: 24px; }
+    .cap-card { padding: 32px; }
+  }
+</style>

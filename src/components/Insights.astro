@@ -1,0 +1,83 @@
+---
+// NebuLink Thought Leadership & Insights Component
+const articles = [
+  {
+    date: "May 12, 2026",
+    tag: "Data Relay Architecture",
+    title: "Optical Inter-Satellite Links: The Backbone of the Next-Gen LEO Economy",
+    excerpt: "As megaconstellations scale, relying purely on traditional ground station handovers creates severe latency bottlenecks. This technical brief analyzes the current hardware constraints and programmatic shifts toward continuous orbital laser connectivity.",
+    link: "https://substack.com" // Swap with your actual Substack/LinkedIn link
+  },
+  {
+    date: "April 28, 2026",
+    tag: "Downstream Markets",
+    title: "De-risking Space Intelligence: Translating Raw Telemetry into Corporate Alpha",
+    excerpt: "The commercial barrier to space data isn't a lack of raw pixels or sensor feeds—it's an engineering interpretation problem. We break down how downstream applications must evolve to serve institutional procurement boards.",
+    link: "https://linkedin.com" // Swap with your actual Substack/LinkedIn link
+  }
+];
+---
+<section class="insights-section" id="about">
+  <div class="container">
+    
+    <div class="section-header">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span>Strategic Briefings</span>
+      </div>
+      <h2 class="section-title">Horizon scanning & <span>market telemetry</span></h2>
+      <p class="section-subtitle">
+        Regular technical dispatches analyzing structural shifts across the space economy, satellite infrastructure, and downstream application development.
+      </p>
+    </div>
+
+    <div class="insights-grid">
+      {articles.map((art) => (
+        <article class="insight-card">
+          <div class="card-meta">
+            <span class="card-date">{art.date}</span>
+            <span class="card-tag">{art.tag}</span>
+          </div>
+          <h3 class="card-title">{art.title}</h3>
+          <p class="card-excerpt">{art.excerpt}</p>
+          <a href={art.link} target="_blank" rel="noopener noreferrer" class="card-link">
+            Read Full Briefing <span>↗</span>
+          </a>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .insights-section { position: relative; z-index: 2; padding: 120px 60px; background: var(--bg); border-bottom: 1px solid var(--border2); }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .section-header { max-width: 650px; margin-bottom: 70px; }
+  .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
+  .eyebrow span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 20px; }
+  .section-title span { font-style: italic; color: var(--gold); font-weight: 400; }
+  .section-subtitle { font-size: 0.9rem; line-height: 1.8; color: var(--muted); }
+
+  .insights-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  
+  .insight-card { display: flex; flex-direction: column; align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid var(--border2); }
+  
+  .card-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .card-date { color: var(--muted); }
+  .card-tag { color: var(--gold); background: rgba(184, 152, 42, 0.08); padding: 2px 8px; border: 1px solid rgba(184, 152, 42, 0.15); }
+  
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 400; color: var(--text); line-height: 1.25; margin-bottom: 16px; }
+  .card-excerpt { font-size: 0.85rem; line-height: 1.75; color: var(--muted); margin-bottom: 24px; }
+  
+  .card-link { font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--gold3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .card-link:hover { color: var(--gold); border-color: var(--gold); }
+  .card-link span { display: inline-block; margin-left: 4px; color: var(--gold); }
+
+  @media (max-width: 850px) {
+    .insights-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

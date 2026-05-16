@@ -1,0 +1,75 @@
+---
+import Metadata from '../components/Metadata.astro';
+import Starfield from '../components/Starfield.astro';
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <Metadata title={title} />
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <Starfield />
+  
+  <slot /> <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    
+    document.addEventListener('mousemove', (e) => {
+      if(cursor && ring) {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        ring.style.left = e.clientX + 'px';
+        ring.style.top = e.clientY + 'px';
+      }
+    });
+  </script>
+</body>
+</html>
+
+<style is:global>
+  :root {
+    --bg:       #022B28;
+    --bg2:      #011f1d;
+    --bg3:      #033330;
+    --surface:  #042f2c;
+    --surface2: #053935;
+    --gold:     #B8982A;
+    --gold2:    #d4b445;
+    --gold3:    #8a7020;
+    --text:     #e8e0cc;
+    --muted:    #7a9490;
+    --border:   rgba(184,152,42,0.15);
+    --border2:  rgba(184,152,42,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s; mix-blend-mode: screen; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(184,152,42,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+</style>
