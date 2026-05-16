@@ -3,10 +3,7 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-// 1. Fetch all your Markdown articles
 const allBriefings = await getCollection('insights');
-
-// 2. Sort them chronologically (newest first)
 const sortedBriefings = allBriefings.sort((a: CollectionEntry<'insights'>, b: CollectionEntry<'insights'>) => {
   return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
 });
@@ -30,7 +27,6 @@ const sortedBriefings = allBriefings.sort((a: CollectionEntry<'insights'>, b: Co
           
           <div class="row-content">
             <h2 class="row-title">
-              {/* brief.id perfectly handles clean URL slugs out-of-the-box in Astro v6 */}
               <a href={`/insights/${brief.id}`}>{brief.data.title}</a>
             </h2>
             <p class="row-excerpt">{brief.data.excerpt}</p>

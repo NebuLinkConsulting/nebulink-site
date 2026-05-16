@@ -3,37 +3,38 @@
 const currentYear = new Date().getFullYear();
 ---
 <section class="outro-section" id="contact">
-  <div class="container">
+  <div class="section-container">
     
-    <div class="intake-box">
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span>Secure Engagement</span>
-      </div>
+    <div class="section-eyebrow-label">03. Contact</div>
+    
+    <div class="outro-split-grid">
       
-      <h2 class="outro-title">Engage <span>NebuLink</span></h2>
-      <p class="outro-subtitle">
-        Whether you require bespoke downstream data integration models, technical due diligence on satellite infrastructure, or priority access to upcoming market intelligence reports, contact us to schedule an initial briefing.
-      </p>
+      <div class="outro-header-panel">
+        <h2 class="outro-title">Get in Touch</h2>
+        <p class="outro-subtitle">
+          Whether you are looking for specific market intelligence, have questions about our analysis, or want to discuss a custom project, send over a message. 
+        </p>
+      </div>
 
-      <form class="intake-form" onsubmit="event.preventDefault(); alert('Message successfully transmitted.');">
-        <div class="form-row">
-          <input type="text" placeholder="Full Name" required />
-          <input type="email" placeholder="Institutional Email" required />
-        </div>
-        <div class="form-row">
-          <input type="text" placeholder="Organisation" required />
-          <input type="text" placeholder="Area of Inquiry (e.g., Data Relays, Consultancy)" required />
-        </div>
-        <textarea placeholder="Briefly outline your project requirements or strategic objectives..." rows="5" required></textarea>
-        
-        <button type="submit" class="submit-btn">Initiate Briefing ↗</button>
-      </form>
+      <div class="intake-box">
+        <form class="intake-form" onsubmit="event.preventDefault(); alert('Message successfully sent.');">
+          <div class="form-row">
+            <input type="email" placeholder="Email Address" required />
+            <input type="text" placeholder="Organisation / Company" required />
+          </div>
+          <div class="form-row full-width">
+            <textarea placeholder="How can we help you? Describe your inquiry or project requirements..." rows="3" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message ↗</button>
+        </form>
+      </div>
+
     </div>
 
     <footer>
       <div class="footer-left">
-        © {currentYear} NebuLink. All rights reserved. <span>//</span> Strategic clarity for the space economy.
+        © {currentYear} NebuLink. All rights reserved. <span>//</span> Market intelligence for the space economy.
       </div>
       <div class="footer-right">
         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -48,52 +49,85 @@ const currentYear = new Date().getFullYear();
   .outro-section { 
     position: relative; 
     z-index: 2; 
-    padding: 120px 60px 40px; 
+    padding: 140px 0 40px 0;
     background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
   }
-  .container { max-width: 1200px; margin: 0 auto; }
+
+  .section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .section-eyebrow-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .outro-split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+    margin-bottom: 100px;
+  }
   
+  .outro-header-panel {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .outro-title { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(2.5rem, 4vw, 3.8rem); 
+    font-weight: 300; 
+    line-height: 1.1; 
+    color: var(--text); 
+    margin-bottom: 24px; 
+  }
+  .outro-subtitle { font-size: 0.95rem; line-height: 1.8; color: var(--muted); max-width: 460px; }
+
   .intake-box { 
-    max-width: 800px; 
-    margin: 0 auto 100px; 
-    background: var(--surface); 
-    border: 1px solid var(--border2); 
-    padding: 60px; 
     position: relative;
-  }
-  .intake-box::after { 
-    content: ''; 
-    position: absolute; 
-    inset: 0; 
-    border: 1px solid rgba(184,152,42,0.05); 
-    margin: 8px; 
-    pointer-events: none; 
+    width: 100%;
   }
 
-  .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
-  .eyebrow span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
+  .intake-form { display: flex; flex-direction: column; gap: 32px; }
   
-  .outro-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 20px; }
-  .outro-title span { font-style: italic; color: var(--gold); font-weight: 400; }
-  .outro-subtitle { font-size: 0.9rem; line-height: 1.8; color: var(--muted); margin-bottom: 40px; max-width: 650px; }
-
-  /* Interactive Form Architecture */
-  .intake-form { display: flex; flex-direction: column; gap: 20px; position: relative; z-index: 3; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  /* Input layouts */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .form-row.full-width { grid-template-columns: 1fr; }
   
+  /* Minimalist structural styling */
   .intake-form input, .intake-form textarea { 
-    background: var(--bg2); 
-    border: 1px solid var(--border2); 
-    padding: 16px; 
+    background: transparent; 
+    border: none;
+    border-bottom: 1px solid var(--border2); 
+    padding: 12px 0; 
     color: var(--text); 
     font-family: 'Barlow', sans-serif; 
-    font-size: 0.88rem; 
-    transition: border-color 0.3s;
+    font-size: 0.9rem; 
+    transition: border-color 0.4s ease;
+    width: 100%;
+    border-radius: 0;
   }
+  
+  .intake-form textarea {
+    resize: none;
+  }
+
   .intake-form input:focus, .intake-form textarea:focus { 
     outline: none; 
     border-color: var(--gold3); 
+  }
+  
+  .intake-form input::placeholder, .intake-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 300;
   }
   
   .submit-btn { 
@@ -106,13 +140,13 @@ const currentYear = new Date().getFullYear();
     font-weight: 600; 
     letter-spacing: 0.15em; 
     text-transform: uppercase; 
-    padding: 16px 36px; 
+    padding: 16px 40px; 
     cursor: pointer; 
-    transition: all 0.3s; 
+    transition: all 0.3s ease; 
+    margin-top: 12px;
   }
   .submit-btn:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
 
-  /* Clean Utilities Footer */
   footer { 
     display: flex; 
     justify-content: space-between; 
@@ -128,10 +162,5 @@ const currentYear = new Date().getFullYear();
   footer a { color: var(--muted); text-decoration: none; margin-left: 24px; transition: color 0.2s; }
   footer a:hover { color: var(--gold); }
 
-  @media (max-width: 768px) {
-    .intake-box { padding: 32px; margin-bottom: 60px; }
-    .form-row { grid-template-columns: 1fr; gap: 20px; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
-    footer a { margin: 0 12px; }
-  }
-</style>
+  @media (max-width: 968px) {
+    .outro-split-grid { grid-template-columns: 1fr; gap: 56px; margin-bottom: 60px; }

@@ -16,7 +16,19 @@ const { title } = Astro.props;
   <div class="cursor-ring" id="cursorRing"></div>
   <Starfield />
   
-  <slot /> <script>
+  <nav class="site-nav">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">NEBULINK</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/insights">Insights</a>
+      </div>
+    </div>
+  </nav>
+  
+  <slot /> 
+
+  <script>
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     
@@ -33,6 +45,7 @@ const { title } = Astro.props;
 </html>
 
 <style is:global>
+  /* 1. Global Core Variables Framework */
   :root {
     --bg:       #022B28;
     --bg2:      #011f1d;
@@ -41,13 +54,14 @@ const { title } = Astro.props;
     --surface2: #053935;
     --gold:     #B8982A;
     --gold2:    #d4b445;
-    --gold3:    #8a7020;
+    --gold3:    rgba(184, 152, 42, 0.3);
     --text:     #e8e0cc;
     --muted:    #7a9490;
     --border:   rgba(184,152,42,0.15);
     --border2:  rgba(184,152,42,0.08);
   }
 
+  /* 2. Global Document Reset Overrides */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
@@ -60,6 +74,7 @@ const { title } = Astro.props;
     cursor: none;
   }
 
+  /* Premium Analogue Fine-Grain Overlay */
   body::before {
     content: '';
     position: fixed;
@@ -70,6 +85,82 @@ const { title } = Astro.props;
     opacity: 0.4;
   }
 
+  /* 3. Universal Layout Tracking Utility */
+  .section-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    box-sizing: border-box;
+  }
+
+  /* 4. Decentralized Component Global Utility Styles */
+  .section-eyebrow-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    
+    /* Center layout default, clean block flow */
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 5. Centralized Fixed Header Styling */
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(2, 43, 40, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: #fff;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+  .nav-links a {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  /* 6. Functional Hardware-Accelerated Interactive Cursors */
   .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s; mix-blend-mode: screen; }
   .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(184,152,42,0.5); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.3s, height 0.3s, border-color 0.3s; }
+
+  /* 7. Unified Core Breakpoints */
+  @media (max-width: 768px) {
+    .section-container { padding: 0 24px; }
+    .nav-container { padding: 20px 24px; }
+  }
 </style>

@@ -1,0 +1,56 @@
+---
+---
+<section class="hero-section">
+  <div class="hero-alignment-wrapper">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <div class="hero-eyebrow-text">Space Market Intelligence & Consultancy</div>
+      </div>
+      <h1 class="hero-title">Strategic analysis<br>for the <strong>space economy</strong></h1>
+      <p class="hero-sub">NebuLink delivers market intelligence  and bespoke consultancy for organisations navigating the global space sector.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Forces the outer shell to span the full screen width */
+  .hero-section { 
+    position: relative; 
+    z-index: 2; 
+    min-height: 80vh; 
+    display: flex; 
+    align-items: center; 
+    width: 100%;
+    padding: 140px 0 60px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Hardcoded alignment framework - duplicates Report Spotlight parameters directly */
+  .hero-alignment-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;  /* This handles the automatic left/right balancing on wide screens */
+    padding: 0 60px; /* Gives standard padding before breaking on mobile */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start; /* Keeps the text block inside aligned to the left of the centered track */
+  }
+  
+  .hero-content {
+    max-width: 650px; 
+    width: 100%;
+  }
+  
+  .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+  .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+  .hero-eyebrow-text { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(3.5rem, 6vw, 6rem); line-height: 1.0; color: var(--text); }
+  .hero-title strong { font-weight: 600; color: var(--gold); font-style: italic; }
+  .hero-sub { font-size: 0.9rem; line-height: 1.85; color: var(--muted); max-width: 460px; margin-top: 28px; }
+
+  @media (max-width: 768px) {
+    .hero-section { padding: 120px 0 40px 0; }
+    .hero-alignment-wrapper { padding: 0 24px; }
+  }
+</style>

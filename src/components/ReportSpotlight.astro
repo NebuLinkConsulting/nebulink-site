@@ -1,81 +1,188 @@
 ---
-// Clean component structure
+// ReportSpotlight.astro - Top-level Intelligence Asset Showcase
 ---
 <section class="spotlight-section" id="reports">
-  <div class="spotlight-container">
+  <div class="section-container">
     
-    <div class="report-preview-side">
-      <div class="report-card-mockup">
-        <div class="report-tag">Forthcoming Intelligence</div>
-        <div class="report-meta">Industrial Report • Q3 2026</div>
-        <h3 class="report-mock-title">The Space Data Relay Market</h3>
-        <p class="report-mock-subtitle">Global Architecture, Infrastructure Mapping & Commercial Ecosystem Dynamics</p>
-        <div class="report-mock-logo">NEBULINK</div>
-      </div>
-    </div>
+    <div class="section-eyebrow-label">01. Published Intelligence</div>
 
-    <div class="report-details-side">
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-span">Featured Market Intelligence</span>
-      </div>
+    <div class="spotlight-container">
       
-      <h2 class="section-title">Mapping the future of <span>orbital connectivity</span></h2>
-      
-      <p class="section-desc">
-        As low-Earth orbit constellations scale exponentially, traditional ground station networks face critical latency bottlenecks. This comprehensive technical and commercial report maps the emerging space-to-space data relay architecture, profiling key operators, optical inter-satellite link (OISL) adoption, and sovereign data relay infrastructure.
-      </p>
-
-      <div class="key-pillars">
-        <div class="pillar">
-          <strong>Ecosystem Mapping</strong>
-          <p>Granular profiles of commercial and institutional relay network architectures.</p>
-        </div>
-        <div class="pillar">
-          <strong>Spectrum & Dynamics</strong>
-          <p>Analysis of RF constraints and the transition to high-throughput laser communication.</p>
+      <div class="report-preview-side">
+        <div class="report-card-mockup">
+          <div class="report-tag">Upcoming Intelligence</div>
+          <div class="report-meta">Market Report • Q3 2026</div>
+          <h3 class="report-mock-title">Analysis of the Space Data Relay Market</h3>
+          <p class="report-mock-subtitle">Global Architecture, Infrastructure Mapping & Commercial Ecosystem Dynamics</p>
+          <div class="report-mock-logo">NEBULINK</div>
         </div>
       </div>
 
-      <div class="access-box">
-        <h4>Request Executive Summary & Launch Updates</h4>
-        <div class="access-form">
-          <input type="email" placeholder="Institutional email address" />
-          <button type="button">Inquire for Access ↗</button>
+      <div class="report-details-side">
+        <h2 class="section-title">The Space Data Relay Market</h2>
+        
+        <p class="section-desc">
+          As low-Earth orbit constellations scale exponentially, traditional ground station networks face critical latency bottlenecks. This comprehensive technical and commercial report maps the emerging space-to-space data relay architecture, profiling key operators, optical inter-satellite link (OISL) adoption, and sovereign data relay infrastructure.
+        </p>
+
+        <div class="key-pillars">
+          <div class="pillar">
+            <strong>Ecosystem Mapping</strong>
+            <p>Granular profiles of commercial and institutional relay network architectures.</p>
+          </div>
+          <div class="pillar">
+            <strong>Spectrum & Dynamics</strong>
+            <p>Analysis of RF constraints and the transition to high-throughput laser communication.</p>
+          </div>
+        </div>
+
+        <div class="access-box">
+          <h4>Request Executive Summary & Launch Updates</h4>
+          <div class="access-form">
+            <input type="email" placeholder="Institutional email address" required />
+            <button type="submit">Inquire for Access ↗</button>
+          </div>
         </div>
       </div>
 
     </div>
-
   </div>
 </section>
 
 <style>
-.spotlight-section { position: relative; z-index: 2; padding: 60px 60px 120px; background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); border-bottom: 1px solid var(--border2); }  .spotlight-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; }
-  .report-preview-side { display: flex; justify-content: center; }
-  .report-card-mockup { width: 100%; max-width: 380px; aspect-ratio: 1 / 1.4; background: linear-gradient(145deg, #043632 0%, var(--bg3) 100%); border: 1px solid var(--gold); padding: 40px; display: flex; flex-direction: column; justify-content: space-between; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
-  .report-card-mockup::after { content: ''; position: absolute; inset: 0; border: 1px solid rgba(184,152,42,0.2); margin: 6px; pointer-events: none; }
-  .report-tag { align-self: flex-start; font-family: 'Barlow Condensed', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold3); padding: 4px 10px; }
-  .report-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: auto; }
-  .report-mock-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 400; line-height: 1.1; color: var(--text); margin: 12px 0 8px; }
-  .report-mock-subtitle { font-size: 0.75rem; line-height: 1.6; color: var(--muted); margin-bottom: auto; }
-  .report-mock-logo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.3em; color: var(--gold3); }
-  .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-  .eyebrow-line { width: 24px; height: 1px; background: var(--gold); }
-  .eyebrow-span { font-family: 'Barlow Condensed', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); }
-  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 24px; }
-  .section-title span { font-style: italic; color: var(--gold); font-weight: 400; }
-  .section-desc { font-size: 0.88rem; line-height: 1.85; color: var(--muted); margin-bottom: 36px; }
-  .key-pillars { display: flex; gap: 32px; margin-bottom: 40px; border-top: 1px solid var(--border2); padding-top: 30px; }
+  .spotlight-section { 
+    position: relative; 
+    z-index: 2; 
+    padding: 140px 0; 
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); 
+    border-bottom: 1px solid var(--border2); 
+  }  
+  
+  /* Tracks layout below the global top-level eyebrow utility */
+  .spotlight-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 80px; 
+    align-items: center;
+    margin-top: 32px; 
+  }
+  
+  .report-preview-side { 
+    display: flex; 
+    justify-content: center; 
+  }
+  
+  /* Hardcase Print Journal Layout Simulation */
+  .report-card-mockup { 
+    width: 100%; 
+    max-width: 380px; 
+    aspect-ratio: 1 / 1.4; 
+    background: linear-gradient(145deg, #043632 0%, var(--bg3) 100%); 
+    border: 1px solid var(--gold); 
+    padding: 40px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    position: relative; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4); 
+  }
+  .report-card-mockup::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; 
+    border: 1px solid rgba(184,152,42,0.2); 
+    margin: 6px; 
+    pointer-events: none; 
+  }
+  
+  .report-tag { 
+    align-self: flex-start; 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 0.65rem; 
+    font-weight: 600; 
+    letter-spacing: 0.2em; 
+    text-transform: uppercase; 
+    color: var(--gold); 
+    border: 1px solid var(--gold3); 
+    padding: 4px 10px; 
+  }
+  .report-meta { 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 0.75rem; 
+    letter-spacing: 0.15em; 
+    text-transform: uppercase; 
+    color: var(--muted); 
+    margin-top: auto; 
+  }
+  .report-mock-title { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: 2.2rem; 
+    font-weight: 400; 
+    line-height: 1.1; 
+    color: var(--text); 
+    margin: 12px 0 8px; 
+  }
+  .report-mock-subtitle { 
+    font-size: 0.75rem; 
+    line-height: 1.6; 
+    color: var(--muted); 
+    margin-bottom: auto; 
+  }
+  .report-mock-logo { 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-weight: 700; 
+    font-size: 0.9rem; 
+    letter-spacing: 0.3em; 
+    color: var(--gold3); 
+  }
+  
+  /* Primary Content Branding */
+  .section-title { 
+    font-family: 'Cormorant Garamond', serif; 
+    font-size: clamp(2rem, 3.5vw, 3.2rem); 
+    font-weight: 300; 
+    line-height: 1.1; 
+    color: var(--text); 
+    margin-bottom: 24px; 
+  }
+  .section-desc { 
+    font-size: 0.88rem; 
+    line-height: 1.85; 
+    color: var(--muted); 
+    margin-bottom: 36px; 
+  }
+  
+  /* Data Track Features Grid split layout */
+  .key-pillars { 
+    display: flex; 
+    gap: 32px; 
+    margin-bottom: 40px; 
+    border-top: 1px solid var(--border2); 
+    padding-top: 30px; 
+  }
   .pillar { flex: 1; }
-  .pillar strong { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); display: block; margin-bottom: 8px; }
-  .pillar p { font-size: 0.8rem; line-height: 1.6; color: var(--muted); }
-  .access-box { background: var(--surface); border: 1px solid var(--border2); padding: 24px; }
-  .access-box h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-  .access-form { display: flex; gap: 12px; }
-  .access-form input { flex: 1; background: var(--bg2); border: 1px solid var(--border2); padding: 12px 16px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 0.85rem; }
-  .access-form input:focus { outline: none; border-color: var(--gold3); }
-  .access-form button { background: transparent; border: 1px solid var(--gold3); color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 24px; cursor: pointer; transition: all 0.2s; }
-  .access-form button:hover { background: var(--gold); color: var(--bg); }
-  @media (max-width: 900px) { .spotlight-container { grid-template-columns: 1fr; gap: 50px; } .key-pillars { flex-direction: column; } }
-</style>
+  .pillar strong { 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 0.85rem; 
+    letter-spacing: 0.1em; 
+    text-transform: uppercase; 
+    color: var(--text); 
+    display: block; 
+    margin-bottom: 8px; 
+  }
+  .pillar p { 
+    font-size: 0.8rem; 
+    line-height: 1.6; 
+    color: var(--muted); 
+  }
+  
+  /* Conversion Intake Elements Block */
+  .access-box { 
+    background: var(--surface); 
+    border: 1px solid var(--border2); 
+    padding: 24px; 
+  }
+  .access-box h4 { 
+    font-family: 'Barlow Condensed', sans-serif; 
+    font-size: 0.75rem; 
+    letter-spacing: 0.15
