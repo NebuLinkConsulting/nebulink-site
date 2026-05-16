@@ -17,13 +17,13 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="intake-box">
-        <form class="intake-form" onsubmit="event.preventDefault(); alert('Message successfully sent.');">
+        <form class="intake-form" id="nebulink-intake-form">
           <div class="form-row">
-            <input type="email" placeholder="Email Address" required />
-            <input type="text" placeholder="Organisation / Company" required />
+            <input type="email" id="form-email" placeholder="Email Address" required />
+            <input type="text" id="form-org" placeholder="Organisation / Company" required />
           </div>
           <div class="form-row full-width">
-            <textarea placeholder="How can we help you? Describe your inquiry or project requirements..." rows="3" required></textarea>
+            <textarea id="form-msg" placeholder="How can we help you? Describe your inquiry or project requirements..." rows="3" required></textarea>
           </div>
           
           <button type="submit" class="submit-btn">Send Message ↗</button>
@@ -44,6 +44,31 @@ const currentYear = new Date().getFullYear();
 
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('nebulink-intake-form');
+  
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    // Grab the inputs cleanly
+    const emailVal = (document.getElementById('form-email') as HTMLInputElement).value;
+    const orgVal = (document.getElementById('form-org') as HTMLInputElement).value;
+    const msgVal = (document.getElementById('form-msg') as HTMLTextAreaElement).value;
+
+    const targetEmail = 'info@nebulink.co.uk';
+    const subject = `NebuLink Project/Inquiry - ${orgVal}`;
+    
+    // Construct a professional, readable email body layout
+    const emailBody = `Hi Alistair,\n\n${msgVal}\n\n---\nSender Email: ${emailVal}\nOrganisation: ${orgVal}`;
+
+    // Generate the fully encoded mailto URL
+    const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+    // Trigger the native local device app
+    window.location.href = mailtoUrl;
+  });
+</script>
 
 <style>
   .outro-section { 
@@ -164,3 +189,5 @@ const currentYear = new Date().getFullYear();
 
   @media (max-width: 968px) {
     .outro-split-grid { grid-template-columns: 1fr; gap: 56px; margin-bottom: 60px; }
+  }
+</style>
