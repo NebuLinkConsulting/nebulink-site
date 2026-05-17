@@ -217,4 +217,28 @@ const currentYear = new Date().getFullYear();
     .footer-container { flex-direction: column; gap: 20px; text-align: center; }
     .footer-container a { margin: 0 12px; }
   }
+  /* ... your existing desktop CSS rules are up here ... */
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    /* etc... */
+  }
+
+  /* ================================================== */
+  /* PASTE THE MEDIA QUERY HERE (AT THE VERY BOTTOM)   */
+  /* ================================================== */
+  @media (max-width: 768px) {
+    .spotlight-section,
+    .spotlight-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      width: 100% !important;
+    }
+    /* ... the rest of the mobile styles ... */
+  }
+
+</style> ```
+
+Drop it right in there for both files, and it will cleanly fix the mobile view!
 </style>

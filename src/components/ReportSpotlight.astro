@@ -47,11 +47,7 @@
           </form>
           <div id="form-status" class="status-msg"></div>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+      </div> </div> </div> </section>
 
 <script>
   const form = document.getElementById('spotlight-inquiry-form') as HTMLFormElement;
@@ -190,6 +186,7 @@
     margin-bottom: 36px; 
   }
   
+  /* FIXED: Restored original Pillar structure styles */
   .key-pillars { 
     display: flex; 
     gap: 32px; 
@@ -213,12 +210,126 @@
     color: var(--muted); 
   }
   
+  /* FIXED: Restored access form aesthetics matching your theme */
   .access-box { 
     background: var(--surface); 
     border: 1px solid var(--border2); 
     padding: 24px; 
+    margin-top: 20px;
   }
   .access-box h4 { 
     font-family: 'Barlow Condensed', sans-serif; 
     font-size: 0.75rem; 
-    letter-spacing: 0.1
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .access-form {
+    display: flex;
+    gap: 16px;
+  }
+
+  .access-form input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border2);
+    padding: 12px 0;
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 0;
+    transition: border-color 0.4s ease;
+  }
+
+  .access-form input:focus {
+    outline: none;
+    border-color: var(--gold3);
+  }
+
+  .access-form input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .access-form button {
+    background: transparent;
+    border: 1px solid var(--gold3);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .access-form button:hover {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+
+  .status-msg {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    font-family: 'Barlow', sans-serif;
+  }
+  .status-msg.success { color: #4ade80; }
+  .status-msg.error { color: #f87171; }
+  .status-msg.processing { color: var(--muted); }
+
+  /* RESPONSIVE MOBILE OVERFLOW CORRECTIONS */
+  @media (max-width: 768px) {
+    .spotlight-section {
+      padding: 80px 0;
+    }
+
+    .spotlight-container {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 40px;
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+
+    .report-preview-side,
+    .report-details-side {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    .report-card-mockup {
+      max-width: 100%;
+      box-sizing: border-box;
+      padding: 32px 24px;
+    }
+
+    .key-pillars {
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .access-box {
+      padding: 16px;
+    }
+
+    .access-form {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 16px !important;
+      width: 100% !important;
+    }
+
+    .access-form input,
+    .access-form button {
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+  }
+</style>
