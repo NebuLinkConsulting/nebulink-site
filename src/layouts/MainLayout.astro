@@ -133,24 +133,33 @@ const currentYear = new Date().getFullYear();
     text-decoration: none;
   }
 /* Make sure your existing .nav-links aligns the new button vertically */
+/* Update your links wrapper to ensure flawless flex alignment */
 .nav-links {
   display: flex;
-  align-items: center;
+  align-items: center; /* Forces total vertical centering on the cross-axis */
   gap: 24px; 
 }
 
-/* Premium Gold Contact Button */
-/* Uses the combined selector to completely override the global grey link styles */
+/* Updated Contact Link styling to match flawlessly */
 .nav-links .nav-contact-btn {
-  color: var(--gold) !important; /* Forces it to start as gold */
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  color: var(--gold) !important;
+  
+  /* 1. FONT MATCH FIX: Inherit the exact font family your nav uses */
+  font-family: inherit; 
+  font-size: 0.8rem; /* Check if your main links are 0.75rem or 0.8rem, match it here */
+  font-weight: 500;
+  letter-spacing: 0.08em; /* Slightly tighter tracking to match HOME/INSIGHTS */
   text-transform: uppercase;
   text-decoration: none;
-  padding: 6px 0;
-  margin-left: 12px;
+  
+  /* 2. ALIGNMENT FIX: Use box-sizing and balance padding so the baseline locks in */
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 4px 0; 
+  margin-left: 8px;
+  
+  /* Keep the elegant line reveal */
   border-bottom: 1px solid transparent;
   transition: border-color 0.25s ease;
 }
@@ -158,6 +167,7 @@ const currentYear = new Date().getFullYear();
 /* Handles the clean underline effect while keeping it gold */
 .nav-links .nav-contact-btn:hover {
   border-bottom: 1px solid var(--gold);
+
 }
   .nav-links a {
     font-family: 'Barlow', sans-serif;
