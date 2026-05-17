@@ -15,17 +15,18 @@ const currentYear = new Date().getFullYear();
 <body>
   <Starfield />
   
-  <nav class="site-nav">
-    <div class="nav-container">
-      <a href="/" class="nav-logo">NEBULINK</a>
-      <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/insights">Insights</a>
-      </div>
+<nav class="site-nav">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">NEBULINK</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/insights">Insights</a>
+      <a href="#contact" class="nav-contact-btn">Contact</a>
     </div>
-  </nav>
-  
-  <slot /> 
+  </div>
+</nav>
+
+<slot />
 
   <footer class="global-footer">
     <div class="footer-container">
@@ -131,10 +132,33 @@ const currentYear = new Date().getFullYear();
     color: #fff;
     text-decoration: none;
   }
-  .nav-links {
-    display: flex;
-    gap: 32px;
-  }
+/* Make sure your existing .nav-links aligns the new button vertically */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px; 
+}
+
+/* Premium Gold Contact Button */
+/* Uses the combined selector to completely override the global grey link styles */
+.nav-links .nav-contact-btn {
+  color: var(--gold) !important; /* Forces it to start as gold */
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 6px 0;
+  margin-left: 12px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+/* Handles the clean underline effect while keeping it gold */
+.nav-links .nav-contact-btn:hover {
+  border-bottom: 1px solid var(--gold);
+}
   .nav-links a {
     font-family: 'Barlow', sans-serif;
     font-size: 0.85rem;

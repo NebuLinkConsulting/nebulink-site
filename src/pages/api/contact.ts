@@ -1,11 +1,14 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
+import { env } from 'cloudflare:workers'; // NEW: Astro v6 native Cloudflare import
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
-  const resend = new Resend('re_15a9jX4G_HsjviTyY7BtPdTxmTEwwCxGf');
-
+  // Astro v6 reads from .dev.vars (local) & Cloudflare Dashboard (prod) via the env object
+  const apiKey = (env as any).RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+  const resend = new Resend(apiKey);
+  
   let email, org, message;
 
   try {
@@ -24,7 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const { data, error } = await resend.emails.send({
-    from: 'NebuLink Contact <onboarding@resend.dev>',
+    from: 'NebuLink Contact <contact@nebulink.co.uk>',
     to: 'alistair@nebulink.co.uk',
     subject: `NebuLink Inquiry - ${org}`,
     text: `From: ${email}\nOrg: ${org}\n\n${message}`,
