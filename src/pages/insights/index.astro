@@ -14,9 +14,8 @@ const sortedBriefings = allBriefings.sort((a: CollectionEntry<'insights'>, b: Co
     
     <header class="archive-header">
       <h1 class="archive-title">The Insights Archive</h1>
-      <p class="archive-lead">A complete chronological directory of technical dispatches and market analysis.</p>
+      <p class="archive-lead">The full index of NebuLink briefs and market updates.</p>
     </header>
-
     <div class="archive-list">
       {sortedBriefings.map((brief: CollectionEntry<'insights'>) => (
         <article class="archive-row">
