@@ -237,7 +237,23 @@ const currentYear = new Date().getFullYear();
     }
     /* ... the rest of the mobile styles ... */
   }
+@media (max-width: 480px) {
+  /* Forces the main navigation links to safely wrap if text runs tight */
+  .nav-links {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+    gap: 12px !important; /* Bring them tight together */
+  }
 
+  .nav-links a,
+  .nav-links .nav-contact-btn {
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em !important;
+    padding: 4px 0 !important;
+    margin-left: 0 !important;
+  }
+}
 </style> ```
 
 Drop it right in there for both files, and it will cleanly fix the mobile view!

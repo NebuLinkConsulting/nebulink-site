@@ -47,7 +47,11 @@
           </form>
           <div id="form-status" class="status-msg"></div>
         </div>
-      </div> </div> </div> </section>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <script>
   const form = document.getElementById('spotlight-inquiry-form') as HTMLFormElement;
@@ -186,7 +190,6 @@
     margin-bottom: 36px; 
   }
   
-  /* FIXED: Restored original Pillar structure styles */
   .key-pillars { 
     display: flex; 
     gap: 32px; 
@@ -210,7 +213,6 @@
     color: var(--muted); 
   }
   
-  /* FIXED: Restored access form aesthetics matching your theme */
   .access-box { 
     background: var(--surface); 
     border: 1px solid var(--border2); 
@@ -282,41 +284,51 @@
   .status-msg.error { color: #f87171; }
   .status-msg.processing { color: var(--muted); }
 
-  /* RESPONSIVE MOBILE OVERFLOW CORRECTIONS */
+  /* ================================================== */
+  /* RESPONSIVE MOBILE FIX: DESTRUCTS THE LAYOUT GRID  */
+  /* ================================================== */
   @media (max-width: 768px) {
     .spotlight-section {
-      padding: 80px 0;
+      padding: 60px 0 !important;
     }
 
+    /* Clear the split columns entirely to fix text drift */
     .spotlight-container {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 40px;
+      display: block !important; 
       width: 100% !important;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
     }
 
-    .report-preview-side,
-    .report-details-side {
+    .report-preview-side {
       width: 100% !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
+      display: block !important;
+      margin-bottom: 40px !important;
     }
 
     .report-card-mockup {
-      max-width: 100%;
-      box-sizing: border-box;
-      padding: 32px 24px;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      padding: 32px 24px !important;
+    }
+
+    /* Snap description text wrapper back to flush left padding boundary */
+    .report-details-side {
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 !important;
     }
 
     .key-pillars {
-      flex-direction: column;
-      gap: 20px;
-      padding-top: 20px;
+      flex-direction: column !important;
+      gap: 20px !important;
+      padding-top: 20px !important;
     }
 
     .access-box {
-      padding: 16px;
+      padding: 16px !important;
+      box-sizing: border-box !important;
     }
 
     .access-form {
@@ -329,7 +341,7 @@
     .access-form input,
     .access-form button {
       width: 100% !important;
-      box-sizing: border-box;
+      box-sizing: border-box !important;
     }
   }
 </style>
